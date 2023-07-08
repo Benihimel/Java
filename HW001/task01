@@ -1,0 +1,20 @@
+package Java_progect.hw_001;
+
+import java.util.Scanner;
+
+public class task001 {
+    public static void main(String[] args) {
+        System.out.printf("Enter number N: ");
+        Scanner num = new Scanner(System.in);
+        int n = num.nextInt();
+        int sum = 0;
+        int product = 1;
+        for (int i = 1; i <= n; i++) {
+            sum += i;
+            product *= i;            
+        }
+        System.out.printf("Sum of numbers from 1 to %d -  %d%n", n, sum);
+        System.out.printf("Product of numbers from 1 to %d -  %d%n", n, product);
+        num.close();
+     }
+}
