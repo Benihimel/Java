@@ -1,0 +1,70 @@
+// 3. В калькулятор (урок 1 и 2) добавьте возможность отменить последнюю операцию.
+
+import java.util.LinkedList;
+import java.util.Scanner;
+
+public class task003 {
+    public static void main(String[] args) {
+        LinkedList<Double> num_list = new LinkedList<>();
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter first number: ");
+        num_list.add(sc.nextDouble());
+        sc.nextLine();
+
+        while(true) {
+            System.out.print("Enter operator (+, -, *, /, Cancel, Exit): ");
+            String op = sc.nextLine();
+
+            if ("".equals(op)) break;
+            else if ("Exit".equals(op) || "exit".equals(op)) {
+                break;            }
+            else if ("Cancel".equals(op) || "cancel".equals(op)) {
+                num_list.removeFirst();
+
+                if (num_list.size() == 0) num_list.add(0.0);
+                }
+            else {
+                System.out.print("Enter second number: ");
+                double secNumber = sc.nextDouble();
+
+                process(num_list, op, secNumber);
+                sc.nextLine();
+                }
+
+            System.out.println("Result: " + num_list.getFirst());
+        }
+
+        sc.close();
+    }
+
+    public static void process(LinkedList<Double> list, String op, double number) {
+        switch (op) {
+            case "+":
+                list.add(0, list.getFirst() + number);
+                break;
+            
+            case "-":
+                list.add(0, list.getFirst() - number);
+                break;
+
+            case "*":
+                list.add(0, list.getFirst() * number);
+                break;
+            
+            case "/":
+                if (number == 0) {
+                    System.out.println("Cannot divide by zero!");
+                    break;
+                }
+                list.add(0, list.getFirst() / number);
+                break;
+            
+            case "Exit":
+                break;
+            
+            default:
+                System.out.println("Wrong operator!");
+        }
+    }
+}
